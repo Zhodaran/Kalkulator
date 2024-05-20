@@ -53,11 +53,11 @@ func destRomaB(a, b string) string {
 	valA, _ := roman[a]
 	valB, _ := roman[b]
 	if valA < valB {
-		return "В римской системе нет отрицательных числе"
+		panic("В римской системе нет отрицательных числе")
 	}
 	sum := valA - valB
 	if sum == 0 {
-		return "В римской системе нет 0"
+		panic("В римской системе нет 0")
 	}
 
 	if sum >= 30 && sum < 39 {
@@ -107,7 +107,7 @@ func fractRomaB(a, b string) string {
 	sum := valA / valB
 
 	if sum == 0 {
-		return "В римской системе нет 0"
+		panic("В римской системе нет 0")
 	}
 
 	if sum >= 30 && sum < 39 {
@@ -131,12 +131,11 @@ func main() {
 	input = strings.TrimSpace(input)
 	parts := strings.Fields(input)
 	if len(parts) < 3 {
-		fmt.Println("Строка не является математической операцией")
-		return
+		panic("Строка не является математической операцией")
 	}
 	if len(parts) > 3 {
-		fmt.Println("Ошибка: калькуляцию необходимо производить с двумя операндами")
-		return
+		panic("Ошибка: калькуляцию необходимо производить с двумя операндами")
+
 	}
 
 	num1 := parts[0]
@@ -172,8 +171,7 @@ func main() {
 	number1, _ := strconv.Atoi(num1)
 	number2, _ := strconv.Atoi(num2)
 	if number1 > 10 || number2 > 10 {
-		fmt.Println("Ошибка: числа не могут быть больше 10")
-		return
+		panic("Ошибка: числа не могут быть больше 10")
 	}
 	if (number1 >= 1 && number1 <= 10) && (number2 >= 1 && number2 <= 10) {
 
@@ -192,8 +190,7 @@ func main() {
 		}
 
 	} else {
-		fmt.Println("Римские и арабские цифры нельзя складывать")
-		return
+		panic("Римские и арабские цифры нельзя складывать")
 	}
 
 }
