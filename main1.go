@@ -27,6 +27,9 @@ func main() {
 		}
 	}
 	str1, str2 := splitStrings(input)
+	if len(str1) > 12 || len(str2) > 12 {
+		panic("Строка больше 10 символов")
+	}
 
 	num2, _ := strconv.Atoi(str2)
 	num1, _ := strconv.Atoi(str1)
@@ -39,7 +42,7 @@ func main() {
 	} else if strings.HasPrefix(str2, `"`) && strings.HasSuffix(str2, `"`) {
 		str2 = str2[1 : len(str2)-0]
 
-	} else if num2 < 10 {
+	} else if num2 <= 10 {
 
 	} else {
 		panic("Строка без ковычек")
@@ -61,6 +64,14 @@ func main() {
 			for i := 0; i < num2-1; i++ {
 				str1 += str
 			}
+			if len(str1) > 42 {
+				var sum int
+				sum = len(str1)
+				sum -= 41
+				str1 = str1[:len(str1)-sum]
+				fmt.Println(str1, `..."`)
+				return
+			}
 			fmt.Println(str1, `"`)
 			return
 		}
@@ -70,6 +81,14 @@ func main() {
 
 	case "+":
 		str1 += str2
+		if len(str1) > 42 {
+			var sum int
+			sum = len(str1)
+			sum -= 41
+			str1 = str1[:len(str1)-sum]
+			fmt.Println(str1, `..."`)
+			return
+		}
 		fmt.Println(str1)
 		return
 	case "/":
@@ -78,6 +97,14 @@ func main() {
 		ss = len(strD) / num2
 		f := strD[0 : ss+1]
 		resultD := strings.Join(f, "")
+		if len(resultD) > 42 {
+			var sum int
+			sum = len(resultD)
+			sum -= 41
+			resultD = resultD[:len(resultD)-sum]
+			fmt.Println(resultD, `..."`)
+			return
+		}
 		fmt.Println(resultD, `"`)
 
 		return
@@ -99,6 +126,14 @@ func main() {
 		result := strings.ReplaceAll(str1, str2, "")
 		result += `"`
 		result = `"` + result
+		if len(result) > 42 {
+			var sum int
+			sum = len(result)
+			sum -= 41
+			result = result[:len(result)-sum]
+			fmt.Println(result, `..."`)
+			return
+		}
 		fmt.Println(result)
 		return
 
